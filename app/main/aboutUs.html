@@ -1,0 +1,27 @@
+<html>
+<head>
+
+<script type="text/javascript" src="../angular.min.js"></script>
+<script type="text/javascript" src="../shared/mainModule.js"></script>
+<script type="text/javascript" src="aboutUsController.js"></script>
+	<!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"-->
+    </head>
+	<body ng-app="mainModule" ng-controller="aboutUsController">
+	<strong id="companyName"> Company Name: {{::data.CompanyName}}</strong><br>
+	<strong id="companyAddress"> Company Address: {{::data.CompanyAddress}}</strong><br>
+	<strong id="companyPhoneNumber"> Company Phone Number: {{::data.CompanyPhoneNumber}}</strong><br>
+	<strong id="companyEmail"> Company e-mail: {{::data.CompanyEmail}}</strong><br>
+	<strong id="companySNS"> Company Social Media:{{::data.CompanySNS}}</strong><br>
+	<strong> Date: {{::data.today| date:"fullDate"}}</strong><br>
+	<p>What started small, with a single discount store and the simple idea of selling more for less, <br>
+	has grown over the last fifty years into the largest retailer in the world. Today, nearly 260 <br>
+	million customers visit our more than 11,500 stores under 65 banners in 28 countries and e-commerce <br>
+	sites in 11 countries each week. With fiscal year 2015 net sales of $482.2 billion, Walmart employs<br>
+	2.2 million associates worldwide – 1.4 million in the U.S. alone. It’s all part of our unwavering commitment 
+	to creating opportunities and bringing value to customers and communities around the world.</p>
+	<section>
+		<h3>Map of our headquarters</h3>
+		<img ng-src="https://maps.googleapis.com/maps/api/staticmap?markers={{data.CompanyAddress}}&size=600x600&maptype=hybrid">
+	</section>
+	</body>
+</html>
