@@ -6,9 +6,12 @@
   <script src="/app/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/app/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/app/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="../angular.min.js"></script>
+  <script type="text/javascript" src="productModule.js"></script>
+    <script type="text/javascript" src="productListController.js"></script>
   <link rel="stylesheet" href="/assets/css/site.css"/>
 </head>
-<body class="container">
+<body class="container" ng-app="productModule" ng-controller="productListController">
 <div>
   <nav class="navbar navbar-default navbar-fixed-top">
     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavbar">
@@ -45,16 +48,8 @@
   <div>
     <h1>Browse the Product Catalog</h1>
     <span>Category:</span>
-    <select name="category" id="category">
+    <select name="category" id="category" ng-model="category" ng-options="category.CategoryName for category in categories">
       <option>All categories</option>
-      <option>Condiments</option>
-      <option>Dairy Products</option>
-      <option>Beverages</option>
-      <option>Grains/Cereals</option>
-      <option>Confections</option>
-      <option selected>Meat/Poultry</option>
-      <option>Produce</option>
-      <option>Seafood</option>
     </select>
 
     <div class="table">
