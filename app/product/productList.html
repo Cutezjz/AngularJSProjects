@@ -10,6 +10,7 @@
   <script type="text/javascript" src="productModule.js"></script>
   <script type="text/javascript" src="../shared/sharedModule.js"></script>
   <script type="text/javascript" src="../shared/categoryService.js"></script>
+    <script type="text/javascript" src="productService.js"></script>
     <script type="text/javascript" src="productListController.js"></script>
     
   <link rel="stylesheet" href="/assets/css/site.css"/>
@@ -51,7 +52,7 @@
   <div>
     <h1>Browse the Product Catalog</h1>
     <span>Category:</span>
-    <select name="category" id="category" ng-model="category" ng-options="category.CategoryName for category in categories">
+    <select name="category" id="category" ng-model="category" ng-options="category.categoryName for category in categories">
       <option>All categories</option>
     </select>
     <div class="table">
@@ -60,7 +61,7 @@
         <section>
           <h1>Meat/Poultry</h1>
           <p>Prepared meats</p>
-          <div ng-repeat="product in products | limitTo:10 | filter:{categoryID: category.CategoryID}:true">
+          <div ng-repeat="product in products | limitTo:10 | filter:{categoryID: category.categoryID}:true">
               <div class="row">
                 <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/{{product.productID}}.jpg"></a></div>
                 <div class="col-sm-5"><a href="/app/product/productDetail.html">{{product.productName}}</a></div>

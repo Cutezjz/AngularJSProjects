@@ -18,7 +18,7 @@
   <script type="text/javascript" src="product/productModule.js"></script>
 </head>
 <body class="container"  ng-app="mainModule" ng-controller="mainProductController">
-<div ng-repeat="product in topProducts" class="item text-center" ng-class="{'active':$first}">
+<div ng-repeat="product in featuredProducts | filter:searchString" class="item text-center" ng-class="{'active':$first}">
 	<a ng-href="product/index.html#/{{::product.productID}}">
 		<img ng-src="../assets/img/productImages/{{::product.productID}}.jpg" class="center-block" alt="{{::product.productName}}">
 		{{::product.productName}}
@@ -44,7 +44,7 @@
       </ul>
       <p class="navbar-text">Welcome! <a href="/login">Log in</a></p>
       <form action="/search" method="GET" class="navbar-form navbar-left">
-        <input type="search" name="searchString" id="searchString" title="Enter a product description" placeholder="Search" class="form-control">
+        <input type="search" ng-model="searchString" name="searchString" id="searchString" title="Enter a product description" placeholder="Search" class="form-control">
         <button class="btn"><span class="glyphicon glyphicon-search"></span></button>
       </form>
     </div>
