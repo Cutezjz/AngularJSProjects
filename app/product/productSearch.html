@@ -7,8 +7,14 @@
   <script src="/app/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/app/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/assets/css/site.css"/>
+  <script type="text/javascript" src="../angular.min.js"></script>
+  <script type="text/javascript" src="../shared/sharedModule.js"></script>
+  <script type="text/javascript" src="productModule.js"></script>
+  <script type="text/javascript" src="productService.js"></script>
+    <script type="text/javascript" src="productSearchController.js"></script>
+    
 </head>
-<body class="container">
+<body class="container" ng-app="productModule" ng-controller="productSearchController">
 <div>
   <nav class="navbar navbar-default navbar-fixed-top">
     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavbar">
@@ -29,7 +35,7 @@
       </ul>
       <p class="navbar-text">Welcome! <a href="/login">Log in</a></p>
       <form action="/search" method="GET" class="navbar-form navbar-left">
-        <input type="search" name="searchString" id="searchString" title="Enter a product description" placeholder="Search" class="form-control">
+        <input type="search" ng-model="searchString" name="searchString" id="searchString" title="Enter a product description" placeholder="Search" class="form-control">
         <button class="btn"><span class="glyphicon glyphicon-search"></span></button>
       </form>
     </div>
@@ -47,10 +53,10 @@
 
   <h1>Search for products</h1>
 
-  <div id="searchedTerm" class="text-primary bg-primary">You're searching for 'cho'</div>
+  <div id="searchedTerm" class="text-primary bg-primary">You're searching for '{{ searchString }}'</div>
   <span>
 Enter all or part of the description: </span>
-  <input name="search" type="text" id="search">
+  <input ng-model="searchString" name="search" type="text" id="search">
   <button id="go" class="btn btn-primary">Search</button>
   <span>
 Category:
@@ -74,33 +80,14 @@ Category:
       <div class="col-sm-3">Quantity Per Unit</div>
       <div class="col-sm-2">Price</div>
     </div>
-
+	<div ng-repeat="product in products |filter:searchString">
+    
     <div class="row">
-      <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/19.jpg"></a></div>
-      <div class="col-sm-5"><a href="/app/product/productDetail.html">Teatime Chocolate Biscuits</a></div>
-      <div class="col-sm-3">10 boxes x 12 pieces</div>
-      <div class="col-sm-2">US$9.20</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/27.jpg"></a></div>
-      <div class="col-sm-5"><a href="/app/product/productDetail.html">Schoggi Schokolade</a></div>
-      <div class="col-sm-3">100 - 100 g pieces</div>
-      <div class="col-sm-2">US$43.90</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/41.jpg"></a></div>
-      <div class="col-sm-5"><a href="/app/product/productDetail.html">Jack's New England Clam Chowder <span class="label label-success">Featured</span></a></div>
-      <div class="col-sm-3">12 - 12 oz cans</div>
-      <div class="col-sm-2">US$9.65</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/48.jpg"></a></div>
-      <div class="col-sm-5"><a href="/app/product/productDetail.html">Chocolade</a></div>
-      <div class="col-sm-3">10 pkgs.</div>
-      <div class="col-sm-2">US$12.75</div>
+          <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/{{product.productID}}.jpg"></a></div>
+          <div class="col-sm-5"><a href="/app/product/productDetail.html">{{product.productName}}</a></div>
+          <div class="col-sm-3">{{product.quantityPerUnit}}</div>
+          <div class="col-sm-2">{{product.unitPrice|currency:"US$ "}}</div>
+    	</div>
     </div>
 
     <div class="row">

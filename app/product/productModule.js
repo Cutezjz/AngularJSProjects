@@ -1,5 +1,5 @@
 // JavaScript Document
 
 (function(){
-	angular.module("productModule",[]);
+	angular.module("productModule",["productModule"]);
 })();

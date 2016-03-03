@@ -8,7 +8,10 @@
   <link rel="stylesheet" href="/app/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
   <script type="text/javascript" src="../angular.min.js"></script>
   <script type="text/javascript" src="productModule.js"></script>
+  <script type="text/javascript" src="../shared/sharedModule.js"></script>
+  <script type="text/javascript" src="../shared/categoryService.js"></script>
     <script type="text/javascript" src="productListController.js"></script>
+    
   <link rel="stylesheet" href="/assets/css/site.css"/>
 </head>
 <body class="container" ng-app="productModule" ng-controller="productListController">
@@ -51,48 +54,19 @@
     <select name="category" id="category" ng-model="category" ng-options="category.CategoryName for category in categories">
       <option>All categories</option>
     </select>
-
     <div class="table">
       <section class="row">
 
         <section>
           <h1>Meat/Poultry</h1>
           <p>Prepared meats</p>
-          <div class="row">
-            <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/17.jpg"></a></div>
-            <div class="col-sm-5"><a href="/app/product/productDetail.html">Alice Mutton</a></div>
-            <div class="col-sm-3">20 - 1 kg tins</div>
-            <div class="col-sm-2">US$39.00</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/9.jpg"></a></div>
-            <div class="col-sm-5"><a href="/app/product/productDetail.html">Mishi Kobe Niku</a></div>
-            <div class="col-sm-3">18 - 500 g pkgs.</div>
-            <div class="col-sm-2">US$97.00</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/53.jpg"></a></div>
-            <div class="col-sm-5"><a href="/app/product/productDetail.html">Perth Pasties <span class="label label-success">Featured</span></a></div>
-            <div class="col-sm-3">48 pieces</div>
-            <div class="col-sm-2">US$32.80</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/55.jpg"></a></div>
-            <div class="col-sm-5"><a href="/app/product/productDetail.html">Pâté chinois</a></div>
-            <div class="col-sm-3">24 boxes x 2 pies</div>
-            <div class="col-sm-2">US$24.00</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/29.jpg"></a></div>
-            <div class="col-sm-5"><a href="/app/product/productDetail.html">Thüringer Rostbratwurst</a></div>
-            <div class="col-sm-3">50 bags x 30 sausages.</div>
-            <div class="col-sm-2">US$123.79</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/54.jpg"></a></div>
-            <div class="col-sm-5"><a href="/app/product/productDetail.html" class="ng-binding">Tourtière</a></div>
-            <div class="col-sm-3">16 pies</div>
-            <div class="col-sm-2">US$7.45</div>
+          <div ng-repeat="product in products | limitTo:10 | filter:{categoryID: category.CategoryID}:true">
+              <div class="row">
+                <div class="col-sm-2"><a href="/app/product/productDetail.html"><img class="img-responsive" src="/assets/img/ProductImages/{{product.productID}}.jpg"></a></div>
+                <div class="col-sm-5"><a href="/app/product/productDetail.html">{{product.productName}}</a></div>
+                <div class="col-sm-3">{{product.quantityPerUnit}}</div>
+                <div class="col-sm-2">{{product.unitPrice|currency:"US# "}}</div>
+              </div>
           </div>
         </section>
       </section>
