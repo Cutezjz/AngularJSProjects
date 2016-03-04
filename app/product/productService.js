@@ -12,9 +12,12 @@
 			return deaturedProducts;
 		}
 		this.getProduct = function(productID){
-			angular.forEach(products, function(value, key) {
-				if (key === productID) {
-					return key.Owner;
+			products.then(function(r){
+				for (var d = 0; d < r.data.length; d++) {
+					console.log("product:"+r.data[d]);
+					if (r.data[d].productID == productID) {
+						return r.data[d];
+					}
 				}
 			});
 		}
